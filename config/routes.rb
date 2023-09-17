@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   
-  post 'weather/get_current_weather'
+  get 'weather/current_weather'
 end

@@ -1,9 +1,11 @@
 <h1>Welcome</h1>
 
-<form action="/weather/get_current_weather" method="post" accept-charset="UTF-8" >
-  <label for="zip-code">Zip code:</label>
-  <input id="zip-code" name="zip_code" type="number" />
-  <label for="country-code"><a href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes" target="_blank">Country code</a>:</label>
-  <input id="country-code" name="country_code" type="text" />
-  <input name="commit" type="submit" value="Submit" data-disable-with="Submit" />
-</form>
+<%= form_with url: weather_current_weather_path, method: :get do |form| %>
+  <%= form.label :zip_code, "Zip code:" %>
+  <%= form.number_field :zip_code %>
+
+  <%= form.label :country_code, (link_to "Country code:", "https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes", target: "_blank") %>
+  <%= form.text_field :country_code %>
+
+  <%= form.submit "Submit" %>
+<% end %>
