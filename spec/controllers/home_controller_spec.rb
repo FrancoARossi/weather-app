@@ -36,4 +36,17 @@ RSpec.describe HomeController do
       expect(response).to render_template(:index)
     end
   end
+
+  describe 'GET #index with invalid params' do
+    before { get :index, params: { zip_code: '', country_code: '' } }
+
+    it 'is successful' do
+      expect(subject.send(:valid_params?)).to be_falsy
+      expect(response).to be_successful
+    end
+
+    it 'renders the index template' do
+      expect(response).to render_template(:index)
+    end
+  end
 end
