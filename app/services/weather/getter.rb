@@ -24,7 +24,20 @@ class Weather::Getter < ApplicationService
   end
 
   def get_weather_by_coords
-    get(weather_url)
+    res = get(weather_url)
+
+    result(res)
+  end
+
+  def result(response)
+    {
+      city: response["name"],
+      weather: response["weather"].first["main"],
+      temp: response["main"]["temp"],
+      feels_like: response["main"]["feels_like"],
+      humidity: response["main"]["humidity"],
+      wind_speed: response["wind"]["speed"],
+    }
   end
 
   def coords_url

@@ -12,10 +12,10 @@
 
 <div id="weather-container">
   <% if defined?(@weather_data) %>
-    <h2>Weather for <%= @weather_data["name"] %></h2>
-    <p>Temperature: <%= @weather_data["main"]["temp"] %>°C</p>
-    <p>Feels like: <%= @weather_data["main"]["feels_like"] %>°C</p>
-    <p>Humidity: <%= @weather_data["main"]["humidity"] %>%</p>
-    <p>Wind speed: <%= @weather_data["wind"]["speed"] %> km/h</p>
+    <h2>Weather for <%= @weather_data[:city] %> is <%= @weather_data[:weather] %></h2>
+    <p>Temperature: <%= @weather_data[:temp] %>°C</p>
+    <p>Feels like: <%= @weather_data[:feels_like] %>°C</p>
+    <p>Humidity: <%= @weather_data[:humidity] %>%</p>
+    <p>Wind speed: <%= @weather_data[:wind_speed] %> km/h</p>
   <% end %>
 </div>
