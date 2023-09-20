@@ -1,6 +1,6 @@
 <h1>Welcome</h1>
 
-<%= form_with url: weather_current_weather_path, method: :get do |form| %>
+<%= form_with method: :get do |form| %>
   <%= form.label :zip_code, "Zip code:" %>
   <%= form.number_field :zip_code %>
 
@@ -9,3 +9,13 @@
 
   <%= form.submit "Submit" %>
 <% end %>
+
+<div id="weather-container">
+  <% if defined?(@weather_data) %>
+    <h2>Weather for <%= @weather_data["name"] %></h2>
+    <p>Temperature: <%= @weather_data["main"]["temp"] %>°C</p>
+    <p>Feels like: <%= @weather_data["main"]["feels_like"] %>°C</p>
+    <p>Humidity: <%= @weather_data["main"]["humidity"] %>%</p>
+    <p>Wind speed: <%= @weather_data["wind"]["speed"] %> km/h</p>
+  <% end %>
+</div>

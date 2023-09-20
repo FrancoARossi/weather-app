@@ -1,7 +1,7 @@
 require 'net/http'
 
 class Weather::Getter < ApplicationService
-  include HTTPHelper
+  include HttpHelper
 
   def call
     @lat, @lon = get_coords_by_zip_code
@@ -15,24 +15,24 @@ class Weather::Getter < ApplicationService
 
   private
   
-  attr_reader :zip_code, :country_code
+  attr_reader :zip_code, :country_code, :lat, :lon
 
   def get_coords_by_zip_code
-    body = get("#{ENV.fetch('OPEN_WEATHER_MAP_BASE_URL', nil)}#{coords_params}")
+    body = get(coords_url)
 
     return body["lat"], body["lon"]
   end
 
   def get_weather_by_coords
-    get("#{ENV.fetch('OPEN_WEATHER_DATA_BASE_URL', nil)}#{weather_params}")
+    get(weather_url)
   end
 
-  def coords_params
-    "?zip=#{zip_code},#{country_code}&appid=#{api_key}"
+  def coords_url
+    "#{ENV.fetch('OPEN_WEATHER_MAP_BASE_URL', nil)}?zip=#{zip_code},#{country_code}&appid=#{api_key}"
   end
 
-  def weather_params
-    "?lat=#{@lat}&lon=#{@lon}&units=metric&appid=#{api_key}"
+  def weather_url
+    "#{ENV.fetch('OPEN_WEATHER_DATA_BASE_URL', nil)}?lat=#{lat}&lon=#{lon}&units=metric&appid=#{api_key}"
   end
 
   def api_key

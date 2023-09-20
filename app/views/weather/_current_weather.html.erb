@@ -1,9 +1,0 @@
-<div id="weather-container">
-  <% if weather_data.present? %>
-    <h2>Weather for <%= weather_data["name"] %></h2>
-    <p>Temperature: <%= weather_data["main"]["temp"] %>°C</p>
-    <p>Feels like: <%= weather_data["main"]["feels_like"] %>°C</p>
-    <p>Humidity: <%= weather_data["main"]["humidity"] %>%</p>
-    <p>Wind speed: <%= weather_data["wind"]["speed"] %> km/h</p>
-  <% end %>
-</div>

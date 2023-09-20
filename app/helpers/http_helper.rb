@@ -1,4 +1,4 @@
-module HTTPHelper
+module HttpHelper
   def get(url)
     uri = URI.parse(url)
     req = Net::HTTP::Get.new(uri.to_s)
